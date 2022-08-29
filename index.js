@@ -5,7 +5,11 @@
 // };
 
 const fs = require('fs');
-const path1 = require('path');
+const myPath = require('path');
+const { marked } = require('marked');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
 
 // //funcion mdLinks miniproblemas readme
 // const mdLinks1 = (file, carpeta, rutaA, rutaB) => {
@@ -44,7 +48,7 @@ const path1 = require('path');
 
 
 // const mdLinks = (path, options) => {
-//   const rutaAbsoluta = path1.resolve(__dirname, path)
+//   const rutaAbsoluta = myPath.resolve(__dirname, path)
 //   console.log(rutaAbsoluta);
 //   if (fs.existsSync(rutaAbsoluta)) {
 //     console.log("El archivo EXISTE!");
@@ -71,7 +75,8 @@ const path1 = require('path');
 
 
 const mdLinks = (path) => {
-  const rutaAbsoluta = path1.resolve(__dirname, path) //convierto la ruta en absoluta
+  const rutaAbsoluta = myPath.resolve(__dirname, path) //convierto la ruta en absoluta
+  console.log("absolutaa", rutaAbsoluta);
   if (!fs.existsSync(rutaAbsoluta)) {
     console.log("la ruta no existe");
   } else {
@@ -80,15 +85,16 @@ const mdLinks = (path) => {
 }
 
 const readDirectory = (rutaAbsoluta) => {
-  if (path1.extname(rutaAbsoluta) == "") {
+  if (myPath.extname(rutaAbsoluta) == "") {
     fs.readdir(rutaAbsoluta, (error, list) => {
       if (error) {
         return console.log("error directorio");
       } else {
         console.log("directorio", list)
         list.forEach(listado => {
-          listado = path1.join(rutaAbsoluta, listado)
-          if (path1.extname(listado) == "") {
+          listado = myPath.join(rutaAbsoluta, listado)
+          console.log("pendiente", listado)
+          if (myPath.extname(listado) == "") {
             readDirectory(listado)
           } else {
             readFile(listado)
@@ -103,18 +109,60 @@ const readDirectory = (rutaAbsoluta) => {
 }
 
 const readFile = (path) => {
-  if (path1.extname(path) == ".md") {
+  console.log(path);
+  if (myPath.extname(path) == ".md") {
     //leo archivo
     fs.readFile(path, 'utf-8', (error, data) => {
       if (error) {
         console.log("error de leer elemento");
       } else {
-        console.log("El contenido es: ", data);
+      saveLinks(data, path)
+       .then(res =>{
+        console.log(res)
+       })
+       .catch (error => {
+        console.error(error)
+       })
       }
     })
   } else {
     return console.log(`el archivo ${path} no es un archivo .md`)
   }
 }
+
+const saveLinks = (data, path)=>{
+  const html = marked(data)
+  // console.log("html",html);
+  const dom = new JSDOM(html)
+  // const links = dom.window.document.getElementsByTagName('a') // si quiero usar un for of si sirve
+  const links = dom.window.document.querySelectorAll('a')
+  // console.log("numero de links",links.length);
+  // console.log("type", typeof links);
+  // console.log(links[1].href);
+  // console.log(links[1].text);
+
+  // funcion constructora
+ function createArray (file, href, text){
+  this.file = file;
+  this.href = href;
+  this.text = text;
+ }
+
+  let arrayLinks = []
+        // return console.log("arraylinks",arrayLinks)
+  return new Promise((resolve, reject) => {
+    if(links.length>0){
+       links.forEach(link =>{
+        // for(let entry of links){
+        const objLink = new createArray (path, link.href, link.text)
+        // const objLink = new createArray (path, entry.href, entry.text)
+        arrayLinks.push(objLink)})
+        resolve (arrayLinks)
+      } else {
+        reject ("no existen links");
+      }
+  })
+}
+
 
 module.exports = mdLinks
