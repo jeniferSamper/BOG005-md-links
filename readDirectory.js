@@ -17,7 +17,7 @@ const readDirectory = (pathAbsolute) => {
       //       listado = myPath.join(pathAbsolute, listado)
            directorio.forEach(listado => {
             listado = myPath.join(pathAbsolute, listado)
-            console.log("listado",listado);
+            // console.log("listado",listado);
             if (myPath.extname(listado) == "") {
               readDirectory(listado)
             } else {

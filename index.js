@@ -9,28 +9,36 @@ const myPath = require('path');
 const { marked } = require('marked');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-const {saveLinks} = require('./saveLinks.js');
+const { saveLinks } = require('./saveLinks.js');
 
 
 const mdLinks = (path) => {
   let array = []
+  let arrayPrint = []
   let pathAbsolute;
-  if(myPath.isAbsolute(path)){
-    pathAbsolute = path 
+  if (myPath.isAbsolute(path)) {
+    pathAbsolute = path
   } else {
     pathAbsolute = myPath.resolve(path) //convierto la ruta en absoluta
   }
-  console.log("absolutaa", pathAbsolute);
+  // console.log("absolutaa", pathAbsolute);
   if (!fs.existsSync(pathAbsolute)) {
     console.log("la ruta no existe");
   } else {
-   saveLinks(pathAbsolute).then(res => {Promise.all(res).then (x=>{console.log("total", x)})})
+    saveLinks(pathAbsolute)
+
+      .then(res => {
+        Promise.all(res).then(x => {
+          arrayPrint = x;
+          console.log("print",arrayPrint);
+
+        })
+      })
       // console.log("longitud", array.length);
       // console.log(" respuesta positiva" ,array);
-    .catch(error => {
-      console.error(error)
-    })
-    // const result = mdLinks(arrayMdFiles).then(content => {Promise.all(content).then(x => {console.log(x)})})
+      .catch(error => {
+        console.error(error)
+      })
 
   }
 }

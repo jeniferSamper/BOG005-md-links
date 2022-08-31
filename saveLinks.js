@@ -9,12 +9,12 @@ let arrayMD = [];
 const saveLinks = (path) => {
     let arrayLinks = [];
     arrayMD = readDirectory(path);
-    console.log("QUE LLEGO 12", arrayMD);
+    // console.log("QUE LLEGO 12", arrayMD);
 
-    return new Promise((resolve, reject) => {
+    let promise1 =  new Promise((resolve, reject) => {
         if (arrayMD.length > 0) {
             const promises = arrayMD.map((fileMd) => {
-                new Promise((resolve, reject) => {
+                return new Promise((resolve, reject) => {
                     fs.readFile(fileMd, 'utf-8', (error, data) => {
                         if (error) {
                             console.log("error de leer elemento");
@@ -32,10 +32,11 @@ const saveLinks = (path) => {
                             links.forEach(link => {
                                 const objLink = new createArray(fileMd, link.href, link.text)
                                 arrayLinks.push(objLink)
+                                // console.log("objeto pusheado",objLink);
                             })
+                            resolve(arrayLinks)
                         }
                         // console.log("array links 33",arrayLinks)
-                        resolve(arrayLinks)
                     })
                 })
             })
@@ -44,5 +45,8 @@ const saveLinks = (path) => {
             reject("REJECT no existen links");
         }
     })
-}
+    return promise1
+} 
+
+
 module.exports = { saveLinks }
