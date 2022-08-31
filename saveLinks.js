@@ -9,38 +9,40 @@ let arrayMD = [];
 const saveLinks = (path) => {
     let arrayLinks = [];
     arrayMD = readDirectory(path);
+    console.log("QUE LLEGO 12", arrayMD);
 
-
-return new Promise((resolve, reject) => {
-    if (arrayMD.length > 0){
-        arrayMD.forEach((fileMd) => {
-            fs.readFile(fileMd, 'utf-8', (error, data) => {
-                if (error) {
-                    console.log("error de leer elemento");
-                } else {
-                    // console.log("data de readfile 17", data);
-                    const html = marked(data)
-                    const dom = new JSDOM(html)
-                    const links = dom.window.document.querySelectorAll('a')
-                    console.log("links", links.length);
-                    // funcion constructora
-                    function createArray(file, href, text) {
-                        this.file = file;
-                        this.href = href;
-                        this.text = text;
-                    }
-                    links.forEach(link => {
-                        const objLink = new createArray(path, link.href, link.text)
-                        arrayLinks.push(objLink)
+    return new Promise((resolve, reject) => {
+        if (arrayMD.length > 0) {
+            const promises = arrayMD.map((fileMd) => {
+                new Promise((resolve, reject) => {
+                    fs.readFile(fileMd, 'utf-8', (error, data) => {
+                        if (error) {
+                            console.log("error de leer elemento");
+                        } else {
+                            // console.log("data de readfile 17", data);
+                            const html = marked(data)
+                            const dom = new JSDOM(html)
+                            const links = dom.window.document.querySelectorAll('a')
+                            // funcion constructora
+                            function createArray(file, href, text) {
+                                this.file = file;
+                                this.href = href;
+                                this.text = text;
+                            }
+                            links.forEach(link => {
+                                const objLink = new createArray(fileMd, link.href, link.text)
+                                arrayLinks.push(objLink)
+                            })
+                        }
+                        // console.log("array links 33",arrayLinks)
+                        resolve(arrayLinks)
                     })
-                    resolve (arrayLinks)}
-            // console.log("array links 33",arrayLinks)
+                })
             })
+            resolve(promises);
+        } else {
+            reject("REJECT no existen links");
+        }
     })
-    }else {
-                reject("no existen links");
-              }
-})      
 }
-
 module.exports = { saveLinks }
