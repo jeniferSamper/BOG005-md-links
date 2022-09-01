@@ -12,37 +12,31 @@ const { JSDOM } = jsdom;
 const { saveLinks } = require('./saveLinks.js');
 
 
-const mdLinks = (path) => {
+const mdLinks = (pathAbsolute) => {
   let array = []
   let arrayPrint = []
-  let pathAbsolute;
-  if (myPath.isAbsolute(path)) {
-    pathAbsolute = path
-  } else {
-    pathAbsolute = myPath.resolve(path) //convierto la ruta en absoluta
-  }
-  // console.log("absolutaa", pathAbsolute);
   if (!fs.existsSync(pathAbsolute)) {
     console.log("la ruta no existe");
   } else {
+    // saveLinks(pathAbsolute)
+
+    //   .then(res => {
+    //     console.log("res",res);
+    //     // Promise.all(res).then(x => {
+    //     //   console.log("print",x);
+    //     // })
+    //   })
+    //   .catch(error => {console.error(error)})
     saveLinks(pathAbsolute)
-
-      .then(res => {
-        Promise.all(res).then(x => {
-          arrayPrint = x;
-          console.log("print",arrayPrint);
-
-        })
-      })
-      // console.log("longitud", array.length);
-      // console.log(" respuesta positiva" ,array);
-      .catch(error => {
-        console.error(error)
-      })
+   .then(res => {
+      array = res
+      console.log(" respuesta positiva" ,array);
+    })
+    .catch (error => {
+     console.error(error)
+    })
 
   }
 }
-
-
 
 module.exports = mdLinks
