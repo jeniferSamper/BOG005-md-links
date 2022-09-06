@@ -25,3 +25,9 @@ if (int3== '--stats' || int3== '--s' || int4== '--stats' ||int4== '--s' ){
 }
   
 mdLinks(pathAbsolute, opcions)
+.then(res => {
+  res.forEach(element => {
+    console.log(element.file, element.href.slice(0, 51), element.text, element.status, element.ok);
+  });
+})
+

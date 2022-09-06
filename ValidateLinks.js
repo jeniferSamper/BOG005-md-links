@@ -1,9 +1,27 @@
-const validateLinks = ( arrayPrint,opcions)=>{
-//     fetch('http://example.com/movies.json')
-//   .then(response => response.json())
-//   .then(data => console.log(data));
-console.log ("array", arrayPrint)
-console.log ("opcions", opcions)
+
+const fetch = require('node-fetch');
+
+const validateLinks = (arrayPrint, opcions) => {
+    return new Promise((resolve, reject) => {
+        if (opcions.validate == true) {
+            arrayPrint.forEach(element => {
+                fetch(element.href)
+                    .then(response => response.status)
+                    .then(data => {
+                        element.status = data
+                        if (data >= 200 && data < 400) {
+                            element.ok = "OK"
+                        } else {
+                            element.ok = "Fail"
+                        }
+                        // console.log("resultado",element);
+                    });
+            })
+
+        } resolve(arrayPrint)
+    })
 }
 
-module.exports = { validateLinks }
+
+
+module.exports = validateLinks;
