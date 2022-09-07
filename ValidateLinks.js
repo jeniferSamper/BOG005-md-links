@@ -4,10 +4,14 @@ const fetch = require('node-fetch');
 const validateLinks = (arrayPrint) => {
     return Promise.all(arrayPrint.map(element => {
         return fetch(element.href)
-            
+
             .then(response => {
                 element.status = response.status
-                element.ok = response.statusText
+                if (response.status >= 200 && response.status < 400) {
+                    element.ok = response.statusText
+                } else {
+                    element.ok = "Fail"
+                }
                 return element
             })
             // .then(response => response.status)
@@ -22,6 +26,7 @@ const validateLinks = (arrayPrint) => {
             //     // console.log("resultado",element);
             // })
             .catch(error => console.error('Error:', error))
+            
     }))
 
 }
