@@ -18,6 +18,9 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "md-links": "./cli.js"
+  },
   "bugs": {
     "url": "https://github.com/jeniferSamper/BOG005-md-links/issues"
   },

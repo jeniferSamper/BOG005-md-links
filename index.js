@@ -19,20 +19,20 @@ const mdLinks = (pathAbsolute, opcions) => {
         .then(res => {
           arrayPrint = res[0]
           // res.flat().filter ( (element, index) => element.text  )
-          validateLinks(arrayPrint, opcions)
-          .then(ress => {
-            console.log("que llego",ress);
-            resolve(ress)
-          })
-          //resolve de validate links
+          if (opcions.validate == true) {
+            validateLinks(arrayPrint)
+              .then(res => {
+                resolve(res) //resolve de validate links
+              })
+          } else {
+            resolve(arrayPrint)
+          }
         })
         .catch(error => {
           console.error(error)
         })
     })
-
   }
-
 }
 
 module.exports = mdLinks

@@ -1,23 +1,23 @@
 const fs = require('fs');
-const myPath = require('path');
+const path = require('path');
 
 
 let arrayMD= [];
 
 const readDirectory = (pathAbsolute) => {
   
-    if (myPath.extname(pathAbsolute) == "") {
+    if (path.extname(pathAbsolute) == "") {
       let directory = []
       directory = fs.readdirSync(pathAbsolute)
            directory.forEach(listado => {
-            listado = myPath.join(pathAbsolute, listado)
-            if (myPath.extname(listado) == "") {
+            listado = path.join(pathAbsolute, listado)
+            if (path.extname(listado) == "") {
               readDirectory(listado)
-            } else if(myPath.extname(listado) == ".md") {
+            } else if(path.extname(listado) == ".md") {
               arrayMD.push(listado)
             }
           })
-    } else {
+    } else if(path.extname(pathAbsolute) == ".md") {
       arrayMD.push(pathAbsolute)
     }
     return arrayMD;

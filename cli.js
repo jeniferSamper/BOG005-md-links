@@ -1,13 +1,15 @@
-// const mdLinks1 = require ('./index.js')
+#!/usr/bin/env node
+
+
 const fs = require('fs');
 const mdLinks = require('./index.js');
-const myPath = require('path');
+const path = require('path');
 
-let path = process.argv[2]
-if (myPath.isAbsolute(path)) {
+let myPath = process.argv[2]
+if (path.isAbsolute(myPath)) {
     pathAbsolute = path
   } else {
-    pathAbsolute = myPath.resolve(path) //convierto la ruta en absoluta
+    pathAbsolute = path.resolve(myPath) //convierto la ruta en absoluta
   }
 
   let opcions = {
@@ -27,7 +29,7 @@ if (int3== '--stats' || int3== '--s' || int4== '--stats' ||int4== '--s' ){
 mdLinks(pathAbsolute, opcions)
 .then(res => {
   res.forEach(element => {
-    console.log(element.file, element.href.slice(0, 51), element.text, element.status, element.ok);
+    console.log(element.file, element.href.slice(0, 51), element.text.slice(0, 51), element.status, element.ok);
   });
 })
 
