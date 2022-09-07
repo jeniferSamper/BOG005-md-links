@@ -18,12 +18,16 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "md-links": "./cli.js"
+  },
   "bugs": {
     "url": "https://github.com/jeniferSamper/BOG005-md-links/issues"
   },
   "homepage": "https://github.com/jeniferSamper/BOG005-md-links#readme",
   "dependencies": {
     "jsdom": "^20.0.0",
-    "marked": "^4.0.19"
+    "marked": "^4.0.19",
+    "node-fetch": "^2.6.7"
   }
 }
