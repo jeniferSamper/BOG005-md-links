@@ -9,13 +9,13 @@ const statsLinks = require('./statsLinks.js');
 let argv = process.argv
 
 const validateInput = () => {
-  let myPath = argv[2]
+let myPath = argv[2];
+  pathAbsolute = path.resolve(myPath)
   if (path.isAbsolute(myPath)) {
-    pathAbsolute = path
+    pathAbsolute = myPath
   } else {
     pathAbsolute = path.resolve(myPath) //convierto la ruta en absoluta
   }
-
   let opcions = {
     validate: false,
     stats: false,
@@ -26,7 +26,6 @@ const validateInput = () => {
   if (argv.includes("--stats") || argv.includes("--s")) {
     opcions.stats = true;
   }
-
   if (!fs.existsSync(pathAbsolute)) {
     console.log("la ruta no existe");
   } else {

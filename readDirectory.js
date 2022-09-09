@@ -5,9 +5,8 @@ const path = require('path');
 let arrayMD= [];
 
 const readDirectory = (pathAbsolute) => {
-  
     if (path.extname(pathAbsolute) == "") {
-      let directory = []
+      let directory = [];
       directory = fs.readdirSync(pathAbsolute)
            directory.forEach(listado => {
             listado = path.join(pathAbsolute, listado)
