@@ -1,5 +1,5 @@
-const mocksData = { 
-pathMD:  'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
+const mocksData = {
+  pathMD: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
   dataValidateFalse: [
     {
       file: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
@@ -26,6 +26,16 @@ pathMD:  'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
     },
     {
       file: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
+      href: 'https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects',
+      text: 'Objetos en JavaScript',
+      status: 200,
+      ok: 'OK'
+    }
+  ],
+  rutaIntento1: 'C:\\Users\\torbe\\BOG005-md-links\\intento1.md',
+  dataIntento1: [
+    {
+      file: 'C:\\Users\\torbe\\BOG005-md-links\\intento1.md',
       href: 'https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects',
       text: 'Objetos en JavaScript',
       status: 200,

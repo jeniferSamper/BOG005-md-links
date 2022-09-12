@@ -1,25 +1,29 @@
 const mdLinks = require('../');
 const mocksData = require('./mocksData.js');
 
-describe('mdLinks', () => {
-  it("is a function", () => {
-    expect(typeof mdLinks).toBe("function");
-  });
-  it('mdLinks get a file MD and validate:false and return an array of object', () => {
-    return mdLinks(mocksData.pathMD, { validate: false })
-      .then((res) => {
-        expect(res).toEqual(mocksData.dataValidateFalse)
-      })
-  })
 
-  it('mdLinks get a file MD and validate:true and return an array of object', () => {
-    return mdLinks(mocksData.pathMD, { validate: true })
+describe('mdLinks opcions validate true', () => {
+  it('mdLinks get a file MD and validate:true and return an array of object',async () => {
+   await mdLinks(mocksData.pathMD, { validate: true })
+     .then((res) => {
+       expect(res).toEqual(mocksData.dataValidateTrue)
+     })
+ })
+})
+
+describe('mdLinks', () => {
+  it('mdLinks get a file MD and validate:false and return an array of object', async() => {
+     await mdLinks(mocksData.pathMD, { validate: false })
       .then((res) => {
-        console.log("esta duplicado?", res);
-        expect(res).toEqual(mocksData.dataValidateTrue)
+        console.log("mock false",mocksData.dataValidateFalse);
+        expect(res.toString()).toEqual(mocksData.dataValidateFalse.toString())
       })
   })
 })
+
+
+
+
 
 // //este test funciona
 // describe('mdLinks', () => {

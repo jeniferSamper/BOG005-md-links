@@ -15,9 +15,8 @@ let arrayMD = [];
       .then(res => {
         arrayPrint = res[0]
         if (opcions.validate == true) {
-          validateLinks(arrayPrint)
+          validateLinks(res[0])
             .then(res => {
-              // console.log("que llega", res);
               resolve(res) //resolve de validate links
             })
         } else {
