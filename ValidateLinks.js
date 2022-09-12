@@ -15,7 +15,6 @@ const validateLinks = (arrayPrint) => {
                 return element
             })
             .catch(error => console.error('Error:', error))
-            
     }))
 
 }

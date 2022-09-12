@@ -15,7 +15,7 @@ describe('mdLinks', () => {
   it('mdLinks get a file MD and validate:true and return an array of object', () => {
     return mdLinks(mocksData.pathMD, { validate: true })
       .then((res) => {
-        console.log("esta duplicado", res);
+        console.log("esta duplicado?", res);
         expect(res).toEqual(mocksData.dataValidateTrue)
       })
   })

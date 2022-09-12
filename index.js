@@ -17,7 +17,7 @@ let arrayMD = [];
         if (opcions.validate == true) {
           validateLinks(arrayPrint)
             .then(res => {
-              console.log("que llega", res);
+              // console.log("que llega", res);
               resolve(res) //resolve de validate links
             })
         } else {
