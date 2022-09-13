@@ -1,22 +1,13 @@
-const mdLinks = require('../');
+const mdLinks = require('../src');
 const mocksData = require('./mocksData.js');
 
 
-describe('mdLinks opcions validate true', () => {
-  it('mdLinks get a file MD and validate:true and return an array of object',async () => {
-   await mdLinks(mocksData.pathMD, { validate: true })
-     .then((res) => {
-       expect(res).toEqual(mocksData.dataValidateTrue)
-     })
- })
-})
-
 describe('mdLinks', () => {
-  it('mdLinks get a file MD and validate:false and return an array of object', async() => {
-     await mdLinks(mocksData.pathMD, { validate: false })
+  it('mdLinks get a file MD and validate:false and return an array of object', (done) => {
+      mdLinks(mocksData.pathMD, { validate: false })
       .then((res) => {
-        console.log("mock false",mocksData.dataValidateFalse);
-        expect(res.toString()).toEqual(mocksData.dataValidateFalse.toString())
+        expect(res).toEqual(mocksData.dataValidateFalse)
+        done();
       })
   })
 })

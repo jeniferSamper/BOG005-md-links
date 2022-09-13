@@ -1,6 +1,6 @@
 
 const { saveLinks } = require('./saveLinks.js');
-const validateLinks = require('./validateLinks.js');
+const validateLinks = require('./ValidateLinks.js');
 const { readDirectory } = require('./readDirectory.js');
 
 
@@ -15,9 +15,10 @@ let arrayMD = [];
       .then(res => {
         arrayPrint = res[0]
         if (opcions.validate == true) {
-          validateLinks(res[0])
+          validateLinks(arrayPrint)
             .then(res => {
               resolve(res) //resolve de validate links
+            
             })
         } else {
           resolve(arrayPrint)

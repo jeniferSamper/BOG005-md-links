@@ -32,16 +32,12 @@ const mocksData = {
       ok: 'OK'
     }
   ],
-  rutaIntento1: 'C:\\Users\\torbe\\BOG005-md-links\\intento1.md',
-  dataIntento1: [
-    {
-      file: 'C:\\Users\\torbe\\BOG005-md-links\\intento1.md',
-      href: 'https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects',
-      text: 'Objetos en JavaScript',
-      status: 200,
-      ok: 'OK'
-    }
-  ]
+  mockStats: {
+    total: 2,
+    unique: 2,
+    broken: 1,
+  }
+
 
 }
 
