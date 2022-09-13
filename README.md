@@ -14,8 +14,8 @@ Esta es una libreria ejecutada con node.js, donde se le entrega al programa una 
 El programa es ejecutable mediante un CLI, y su programación esta basada en promesas y recursividad.
 
 ## 3. Diagrama de flujo}
-![Diagrama 1](C:\Users\torbe\BOG005-md-links\Images\diagrama 1.png)
-![Diagrama 2](C:\Users\torbe\BOG005-md-links\Images\diagrama 2.png)
+![Diagrama 1](https://github.com/jeniferSamper/BOG005-md-links/blob/main/Images/diagrama%201.png)
+![Diagrama 2](https://github.com/jeniferSamper/BOG005-md-links/blob/main/Images/diagrama%202.png)
 
 ## 4Documentación técnica de la librería
 ### 4.1 JavaScript API
