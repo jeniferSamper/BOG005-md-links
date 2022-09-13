@@ -30,7 +30,7 @@ let arrayMD = [];
   })
 }
 
-module.exports = mdLinks
+module.exports = {mdLinks}
 
 
 // module.exports = () => {

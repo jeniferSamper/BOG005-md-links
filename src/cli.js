@@ -2,7 +2,7 @@
 
 
 const fs = require('fs');
-const mdLinks = require('./index.js');
+const {mdLinks} = require('./index.js');
 const path = require('path');
 const statsLinks = require('./statsLinks.js');
 
