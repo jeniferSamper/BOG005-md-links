@@ -14,11 +14,16 @@ Esta es una libreria ejecutada con node.js, donde se le entrega al programa una 
 El programa es ejecutable mediante un CLI, y su programación esta basada en promesas y recursividad.
 
 ## 3. Diagrama de flujo}
-![Diagrama 1](https://github.com/jeniferSamper/BOG005-md-links/blob/main/Images/diagrama%201.png)
-![Diagrama 2](https://github.com/jeniferSamper/BOG005-md-links/blob/main/Images/diagrama%202.png)
+![Diagrama 1](C:\Users\torbe\BOG005-md-links\Images\diagrama 1.png)
+![Diagrama 2](C:\Users\torbe\BOG005-md-links\Images\diagrama 2.png)
 
-## 4Documentación técnica de la librería
+## 4. Documentación técnica de la librería
 ### 4.1 JavaScript API
+La biblioteca se importa y usa de acuerdo al siguiente ejemplo
+```sh
+const {mdLinks} = require('jsamper-md-links')
+```
+
 #### `mdLinks(path, options)`
 
 ##### Argumentos
@@ -90,4 +95,24 @@ $ md-links ./some/example.md --stats --validate
 Total: 3
 Unique: 3
 Broken: 1
+```
+### 5. Guia de Uso e Instalación 
+Para usar el modulo, lo puedes instalar con el siguiente comando desde tu terminal: 
+```sh
+npm i jsamper-md-links
+```
+Este módulo incluye un ejecutable como una interfaz que se puede importar con require.
+```sh
+const {mdLinks} = require('jsamper-md-links')
+```
+los comandos validos de opciones desde la terminal son:
+```sh
+--validate o --v
+--stats o --s
+```
+Para ver los resultados de ambos comando revisar la documentación tecnica de la libreria.
+
+para ejecutarlo desde el CLI:
+```sh
+md-links <path-to-file> [options]
 ```
