@@ -10,16 +10,16 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jeniferSamper/BOG005-md-links.git"
   },
-  "author": "",
+  "author": "Jenifer Samper",
   "license": "ISC",
   "bin": {
-    "md-links": "./cli.js"
+    "md-links": "./src/cli.js"
   },
   "bugs": {
     "url": "https://github.com/jeniferSamper/BOG005-md-links/issues"
@@ -29,5 +29,8 @@
     "jsdom": "^20.0.0",
     "marked": "^4.0.19",
     "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "jest": "^29.0.2"
   }
 }
