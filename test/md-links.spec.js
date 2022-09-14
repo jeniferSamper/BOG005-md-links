@@ -1,4 +1,4 @@
-const mdLinks = require('../src');
+const {mdLinks} = require('../src/index');
 const mocksData = require('./mocksData.js');
 
 
