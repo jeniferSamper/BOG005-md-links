@@ -21,8 +21,8 @@ const mocksData = {
       file: './test/prueba.md',
       href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
       text: 'Funciones — bloques de código reutilizables - MDN',
-      status: 404,
-      ok: 'Fail'
+      status: 200,
+      ok: 'OK'
     },
     {
       file: './test/prueba.md',
@@ -35,7 +35,7 @@ const mocksData = {
   mockStats: {
     total: 2,
     unique: 2,
-    broken: 1,
+    broken: 0,
   }
 
 
