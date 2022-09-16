@@ -9,7 +9,7 @@ describe('mdLinks opcions validate true', () => {
             .then((res) => {
                 expect(res).toEqual(mocksData.dataValidateTrue)
                 done()
-            })
+            }).catch(console.error)
     })
 })
 
