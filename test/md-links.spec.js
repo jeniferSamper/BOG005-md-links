@@ -1,16 +1,30 @@
-const {mdLinks} = require('../src');
+const {mdLinks} = require('../src/index');
+const statsLinks = require('../src/statsLinks.js');
 const mocksData = require('./mocksData.js');
 
+jest.mock ("node-fetch", ()=> {
+  return jest.fn(() => Promise.resolve({status: 200, statusText: "OK"}))
+});
+
+
+describe('mdLinks opcions validate true', () => {
+  it('mdLinks get a file MD and validate:true and return an array of object', () => {
+    return mdLinks(mocksData.pathMD, { validate: true })
+      .then((res) => {
+        expect(res).toEqual(mocksData.dataValidateTrue)
+      });
+  });
+});
+
 describe('mdLinks', () => {
-  it('mdLinks get a file MD and validate:false and return an array of object', (done) => {
-      mdLinks(mocksData.pathMD, { validate: false })
+  it('mdLinks get a file MD and validate:false and return an array of object', () => {
+    return mdLinks(mocksData.pathMD, { validate: false })
       .then((res) => {
         expect(res).toEqual(mocksData.dataValidateFalse)
-        done();
-      })
-      .catch(res => {console.error(res)})
-  })
-})
+      });
+  });
+});
+
 
 describe('mdLinks opcions validate true', () => {
   it('mdLinks get a file MD and validate:true and return an array of object', (done) => {
@@ -20,18 +34,11 @@ describe('mdLinks opcions validate true', () => {
               done()
           })
           .catch(res => {console.error(res)})
-  })
-})
+  })})
 
-
-
-
-
-// //este test funciona
-// describe('mdLinks', () => {
-// 	test('mdlinks recibe ruta .md', () => {
-// 		return mdLinks('C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',{validate:false}).then((res) => {
-// 			expect(res).toEqual(data);
-// 		});
-// 	});})
-
+  describe('statsLinks', () => {
+    it('statsLinks get an array of object and return stats', () => {
+          expect(statsLinks(mocksData.dataValidateTrue)).toEqual(mocksData.mockStats)
+        })
+        .catch(res => {console.error(res)})
+    })
