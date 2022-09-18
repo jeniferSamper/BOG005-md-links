@@ -24,9 +24,7 @@ let arrayMD = [];
           resolve(arrayPrint)
         }
       })
-      .catch(error => {
-        reject(error)
-      })
+      .catch(error => {reject(error)})
   })
 }
 

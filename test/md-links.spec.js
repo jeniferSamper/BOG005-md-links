@@ -1,4 +1,5 @@
 const {mdLinks} = require('../src/index');
+const statsLinks = require('../src/statsLinks.js');
 const mocksData = require('./mocksData.js');
 
 jest.mock ("node-fetch", ()=> {
@@ -24,3 +25,8 @@ describe('mdLinks', () => {
   });
 });
 
+describe('statsLinks', () => {
+  it('statsLinks get an array of object and return stats', () => {
+        expect(statsLinks(mocksData.dataValidateTrue)).toEqual(mocksData.mockStats)
+      })
+  })
