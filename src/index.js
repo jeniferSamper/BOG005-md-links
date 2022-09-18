@@ -25,7 +25,7 @@ let arrayMD = [];
         }
       })
       .catch(error => {
-        console.error(error)
+        reject(error)
       })
   })
 }
