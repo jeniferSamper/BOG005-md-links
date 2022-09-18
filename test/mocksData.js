@@ -1,5 +1,8 @@
+const path = require('path');
+
 const mocksData = {
-  pathMD: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
+  // pathMD: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
+  pathMD: path.resolve("test\\prueba.md"),
   dataValidateFalse: [
     {
       file: 'C:\\Users\\torbe\\BOG005-md-links\\test\\prueba.md',
