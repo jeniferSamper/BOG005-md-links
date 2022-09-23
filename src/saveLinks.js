@@ -4,6 +4,7 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const saveLinks = (arrayMD) => {
+    let arrayLinks = [];
     if (arrayMD.length > 0) {
         return Promise.all(arrayMD.map((fileMd) => {
             return new Promise((resolve, reject) => {
@@ -16,7 +17,6 @@ const saveLinks = (arrayMD) => {
                             const dom = new JSDOM(html)
                             const links = dom.window.document.querySelectorAll('a')
 
-                            let arrayLinks = [];
                             links.forEach(link => {
                                 if (link.href.includes('http')) {
                                     const dataObj = {

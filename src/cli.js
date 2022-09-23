@@ -10,7 +10,6 @@ let argv = process.argv
 
 const validateInput = () => {
 let myPath = argv[2];
-  pathAbsolute = path.resolve(myPath)
   if (path.isAbsolute(myPath)) {
     pathAbsolute = myPath
   } else {
